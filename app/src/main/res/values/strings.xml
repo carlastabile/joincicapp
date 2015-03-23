@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">JOINCIC App</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="joincic">Jornadas Interuniversitarias de Ciencias de la Computación</string>
+
+</resources>
