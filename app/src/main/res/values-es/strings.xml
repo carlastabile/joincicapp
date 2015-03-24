@@ -5,6 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="joincic">Jornadas Interuniversitarias de Ciencias de la Computación</string>
+    <string name="joincic_description">El objetivo central de estas Jornadas es reunir a destacados investigadores para intercambiar conocimientos e innovaciones en Ciencias de la Computación entre profesionales, empresarios y estudiantes relacionados con este campo de estudios, ampliamente utilizado en las diversas ramas de la actividad pública y privada. Es nuestro pensar la ampliación de los horizontes y de nuestras limitaciones mediante la adquisición del conocimiento, donde la reunión de los conocedores en un evento que se presenten para los interesados en la materia.</string>
 
 
 </resources>
