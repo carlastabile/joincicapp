@@ -1,5 +1,6 @@
 package ve.com.joincic.joincicapp.views;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -71,8 +73,8 @@ public abstract class ParentActivity extends ActionBarActivity {
         ArrayList<DrawerItem> items = new ArrayList<DrawerItem>();
         ArrayList<Integer> iconIds = getIconIds();
 
-        items.add(new DrawerItem(getResources().getString(R.string.app_name),
-                R.drawable.ic_joincic_logo));
+//        items.add(new DrawerItem(getResources().getString(R.string.app_name),
+//                R.drawable.ic_joincic_logo));
 
         int size = mPlanetTitles.length;
         for (int i = 0; i < size; i++) {
@@ -122,6 +124,40 @@ public abstract class ParentActivity extends ActionBarActivity {
     }
 
     /**
+     * Takes the user to the corresponding activity depending on the option they selected
+     * in the menu
+     * */
+    private void selectItem(int position) {
+
+        Resources res = getResources();
+
+        if (mPlanetTitles[position] == null) {
+            return;
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.about_us))){ //About us
+            Intent i = new Intent(this, HomeActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
+
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.calendar))){ //Calendar
+
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.map))){ //Map
+
+            
+
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.pratical_work))){ //Practical Work
+
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.questions))){ //Questions
+
+        } else {
+            return;
+        }
+        // Highlight the selected item, update the title, and close the drawer
+        mDrawerList.setItemChecked(position, true);
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+
+    /**
      * Gets the id of the icon for the menu
      *
      * @return an array of integer with the ids
@@ -136,22 +172,6 @@ public abstract class ParentActivity extends ActionBarActivity {
         iconIds.add(R.drawable.ic_question);
 
         return iconIds;
-    }
-
-
-    private void selectItem(int position) {
-        // Odd positions will be lighter
-        // Even positions will be darker
-
-        if (mPlanetTitles[position] == null) {
-            return;
-
-        } else if (mPlanetTitles[position].equals("Sun")){ // Profile
-            Toast.makeText(this, "HOLA!!!", Toast.LENGTH_SHORT).show();
-        }
-        // Highlight the selected item, update the title, and close the drawer
-        mDrawerList.setItemChecked(position, true);
-        mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     @Override

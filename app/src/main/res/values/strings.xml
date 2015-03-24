@@ -16,4 +16,10 @@
         <item name="pratical_work">Mesas de Trabajo</item>
         <item name="questions">Preguntas a Ponentes</item>
     </string-array>
+
+    <string name="about_us">Nosotros</string>
+    <string name="calendar">Agenda</string>
+    <string name="map">Mapa</string>
+    <string name="pratical_work">Mesas de Trabajo</string>
+    <string name="questions">Preguntas a Ponentes</string>
 </resources>
