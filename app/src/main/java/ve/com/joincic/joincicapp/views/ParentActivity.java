@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.internal.app.ToolbarActionBar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -70,10 +69,14 @@ public abstract class ParentActivity extends ActionBarActivity {
 
         // Set the adapter for the list view
         ArrayList<DrawerItem> items = new ArrayList<DrawerItem>();
+        ArrayList<Integer> iconIds = getIconIds();
+
+        items.add(new DrawerItem(getResources().getString(R.string.app_name),
+                R.drawable.ic_joincic_logo));
 
         int size = mPlanetTitles.length;
         for (int i = 0; i < size; i++) {
-            items.add(new DrawerItem(mPlanetTitles[i], 0));
+            items.add(new DrawerItem(mPlanetTitles[i], iconIds.get(i)));
         }
 
         DrawerItemAdapter adapter = new DrawerItemAdapter(this, items);
@@ -119,8 +122,22 @@ public abstract class ParentActivity extends ActionBarActivity {
     }
 
     /**
-     * Swaps fragments in the main content view
-     */
+     * Gets the id of the icon for the menu
+     *
+     * @return an array of integer with the ids
+     * */
+    public ArrayList<Integer> getIconIds(){
+        ArrayList<Integer> iconIds = new ArrayList<Integer>();
+
+        iconIds.add(R.drawable.ic_question);
+        iconIds.add(R.drawable.ic_calendar);
+        iconIds.add(R.drawable.ic_map);
+        iconIds.add(R.drawable.ic_practical_work);
+        iconIds.add(R.drawable.ic_question);
+
+        return iconIds;
+    }
+
 
     private void selectItem(int position) {
         // Odd positions will be lighter
