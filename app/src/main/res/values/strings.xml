@@ -22,4 +22,7 @@
     <string name="map">Mapa</string>
     <string name="pratical_work">Mesas de Trabajo</string>
     <string name="questions">Preguntas a Ponentes</string>
+
+    <!--Map strings-->
+    <string name="joincic_location">Conjunto de Auditorios. Universidad Simón Bolívar. Caracas, Venezuela</string>
 </resources>

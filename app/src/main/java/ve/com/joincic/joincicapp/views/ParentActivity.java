@@ -9,13 +9,11 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -141,8 +139,9 @@ public abstract class ParentActivity extends ActionBarActivity {
         } else if (mPlanetTitles[position].equals(res.getString(R.string.calendar))){ //Calendar
 
         } else if (mPlanetTitles[position].equals(res.getString(R.string.map))){ //Map
-
-            
+            Intent i = new Intent(this, MapActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
 
         } else if (mPlanetTitles[position].equals(res.getString(R.string.pratical_work))){ //Practical Work
 
