@@ -34,15 +34,21 @@ public abstract class ParentActivity extends ActionBarActivity {
     private ListView mDrawerList;
 
     protected abstract int getLayoutId();
+    protected abstract String getActivityName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(getLayoutId());
+        setActivityName(getActivityName());
 
         setNavigationDrawer();
 
+    }
+
+    public void setActivityName(String name){
+        getSupportActionBar().setTitle(name);
     }
 
     public void setNavigationDrawer() {
@@ -137,6 +143,9 @@ public abstract class ParentActivity extends ActionBarActivity {
             startActivity(i);
 
         } else if (mPlanetTitles[position].equals(res.getString(R.string.calendar))){ //Calendar
+            Intent i = new Intent(this, ScheduleActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
 
         } else if (mPlanetTitles[position].equals(res.getString(R.string.map))){ //Map
             Intent i = new Intent(this, MapActivity.class);

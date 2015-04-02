@@ -19,6 +19,10 @@ public class HomeActivity extends ParentActivity {
         return R.layout.activity_home;
     }
 
+    @Override
+    protected String getActivityName() {
+        return getResources().getString(R.string.about_us);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

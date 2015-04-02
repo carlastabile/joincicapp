@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/JOINCICApp.iml" filepath="$PROJECT_DIR$/JOINCICApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/joincicapp.iml" filepath="$PROJECT_DIR$/joincicapp.iml" />
     </modules>
   </component>
 </project>

@@ -62,4 +62,9 @@ public class MapActivity extends ParentActivity {
     protected int getLayoutId() {
         return R.layout.activity_map;
     }
+
+    @Override
+    protected String getActivityName() {
+        return getResources().getString(R.string.map);
+    }
 }

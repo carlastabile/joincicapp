@@ -23,6 +23,15 @@
     <string name="pratical_work">Mesas de Trabajo</string>
     <string name="questions">Preguntas a Ponentes</string>
 
+
+    <!--Schedule stuff-->
+    <string-array name="schedule_days">
+        <item name="first_day">Martes</item>
+        <item name="second_day">Miercoles</item>
+        <item name="third_day">Jueves</item>
+        <item name="fourth_day">Viernes</item>
+    </string-array>
+
     <!--Map strings-->
     <string name="joincic_location">Conjunto de Auditorios. Universidad Simón Bolívar. Caracas, Venezuela</string>
 </resources>
