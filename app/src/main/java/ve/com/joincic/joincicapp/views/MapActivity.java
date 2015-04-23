@@ -7,8 +7,10 @@ import android.widget.ImageView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -45,10 +47,10 @@ public class MapActivity extends ParentActivity {
                         .fromResource(R.drawable.ic_joincic_logo)));
 
         // Move the camera instantly to hamburg with a zoom of 15.
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(JOINCIC_LOCATION, 15));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(JOINCIC_LOCATION, 17));
 
         // Zoom in, animating the camera.
-        map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+//        map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
     }
 
     @Override
