@@ -9,6 +9,7 @@ import java.util.List;
 
 import ve.com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.adapters.DemoCollectionPagerAdapter;
+import ve.com.joincic.joincicapp.requesters.ScheduleRequester;
 
 /**
  * This class manages everything related to the schedule of the event
@@ -31,6 +32,9 @@ public class ScheduleActivity extends ParentActivity {
         super.onCreate(savedInstanceState);
 
         setNavigationTabs();
+
+        ScheduleRequester requester = new ScheduleRequester(this);
+        requester.execute();
     }
 
     public void setNavigationTabs(){

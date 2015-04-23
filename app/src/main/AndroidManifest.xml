@@ -20,6 +20,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
+        <provider
+            android:name="ve.com.joincic.joincicapp.providers.JoincicProvider"
+            android:authorities="ve.com.joincic.joincicapp.providers"
+            android:exported="false" >
+        </provider>
         <activity
             android:name=".views.SplashScreenActivity"
             android:label="@string/app_name">
