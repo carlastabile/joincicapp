@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import ve.com.joincic.joincicapp.controllers.Ponencia;
 import ve.com.joincic.joincicapp.controllers.Schedule;
 
 /**
@@ -60,7 +59,7 @@ public class PresentationModel {
     }
 
 
-    public static ContentValues presentationToValues(Ponencia p) {
+    public static ContentValues presentationToValues(Schedule.Presentation p) {
         ContentValues values = new ContentValues();
         values.put(C_ID, p.getId());
         values.put(C_SUBJECT, p.getTema());

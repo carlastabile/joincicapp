@@ -11,20 +11,15 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import ve.com.joincic.joincicapp.controllers.Ponencia;
 import ve.com.joincic.joincicapp.controllers.Schedule;
 import ve.com.joincic.joincicapp.controllers.ScheduleController;
 
@@ -80,16 +75,16 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
                             result.indexOf("["), result.lastIndexOf("]") + 1));
                     Log.d(TAG, "----" + json.toString());
                     Gson gson = new Gson();
-                    Ponencia[] p = gson.fromJson(json.toString(),
-                            Ponencia[].class);
+                    Schedule[] p = gson.fromJson(json.toString(),
+                            Schedule[].class);
 
                         Log.d(TAG, "----" +p.length);
 
                     for (int i=0; i<p.length; i++){
-                        Log.d(TAG, "---- id " + p[i].getTitulo());
+                        Log.d(TAG, "---- id " + p[i].getPonencia().getTitulo());
                     }
 
-                    ArrayList<Ponencia> presentations = new ArrayList<Ponencia>(Arrays.asList(p));
+                    ArrayList<Schedule> presentations = new ArrayList<Schedule>(Arrays.asList(p));
 
                     ScheduleController.getInstance(this.context);
 

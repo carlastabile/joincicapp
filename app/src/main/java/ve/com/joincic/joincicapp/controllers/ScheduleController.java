@@ -19,11 +19,11 @@ public class ScheduleController {
         context = c.getApplicationContext();
     }
 
-    public static void insertPresentations(ArrayList<Ponencia> presentations) {
+    public static void insertPresentations(ArrayList<Schedule> presentations) {
         if (presentations != null) {
-            for (Ponencia p : presentations) {
+            for (Schedule p : presentations) {
                 context.getContentResolver().insert(JoincicProvider.CONTENT_URI_PRESENTATIONS,
-                        PresentationModel.presentationToValues(p));
+                        PresentationModel.presentationToValues(p.getPonencia()));
             }
         }
     }
