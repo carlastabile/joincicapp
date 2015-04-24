@@ -1,10 +1,14 @@
 package ve.com.joincic.joincicapp.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -14,12 +18,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ve.com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.adapters.DrawerItem;
 import ve.com.joincic.joincicapp.adapters.DrawerItemAdapter;
+import ve.com.joincic.joincicapp.application.JoincicApp;
 
 /**
  * This class is the parent of all the classes of the JOINCIC App.
@@ -134,6 +140,7 @@ public abstract class ParentActivity extends ActionBarActivity {
     private void selectItem(int position) {
 
         Resources res = getResources();
+        SharedPreferences prefs = getSharedPreferences(JoincicApp.REQUEST_PREFS, MODE_PRIVATE);
 
         if (mPlanetTitles[position] == null) {
             return;
@@ -143,14 +150,36 @@ public abstract class ParentActivity extends ActionBarActivity {
             startActivity(i);
 
         } else if (mPlanetTitles[position].equals(res.getString(R.string.calendar))){ //Calendar
-            Intent i = new Intent(this, ScheduleActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(i);
+
+            boolean savedData = prefs.getBoolean(JoincicApp.SCHEDULE_REQUEST, false);
+
+            if (!isNetworkAvailable()) {
+                if (!savedData) {
+                    Toast.makeText(this,
+                            getResources().getString(R.string.no_connection),
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Intent i = new Intent(this, ScheduleActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(i);
+                }
+            } else {
+                Intent i = new Intent(this, ScheduleActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(i);
+            }
 
         } else if (mPlanetTitles[position].equals(res.getString(R.string.map))){ //Map
-            Intent i = new Intent(this, MapActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(i);
+
+            if (!isNetworkAvailable()) {
+                Toast.makeText(this,
+                            getResources().getString(R.string.no_connection),
+                            Toast.LENGTH_LONG).show();
+            } else {
+                Intent i = new Intent(this, MapActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(i);
+            }
 
         } else if (mPlanetTitles[position].equals(res.getString(R.string.pratical_work))){ //Practical Work
 
@@ -215,4 +244,12 @@ public abstract class ParentActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager
+                .getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 }

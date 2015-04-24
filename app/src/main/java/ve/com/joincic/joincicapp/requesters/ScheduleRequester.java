@@ -1,5 +1,6 @@
 package ve.com.joincic.joincicapp.requesters;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -20,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import ve.com.joincic.joincicapp.R;
+import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.controllers.Schedule;
 import ve.com.joincic.joincicapp.controllers.ScheduleController;
 
@@ -31,11 +34,23 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
     private static String PRESENTATIONS_PATH = "http://sistema.joincic.com.ve/ponencias.json";
     private static String WORK_TABLES_PATH = "http://sistema.joincic.com.ve/mesas_de_trabajo.json";
     Context context;
+    ProgressDialog prgDialog;
 
     public ScheduleRequester(Context context) {
         this.context = context;
+        this.prgDialog = new ProgressDialog(this.context);
+        this.prgDialog.setMessage(this.context.getResources().getString(R.string.loading));
+        this.prgDialog.setCancelable(false);
     }
 
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
+        if (this.prgDialog != null && !this.prgDialog.isShowing()){
+            this.prgDialog.show();
+        }
+    }
 
     @Override
     protected Integer doInBackground(String... params) {
@@ -46,6 +61,10 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
     @Override
     protected void onPostExecute(Integer result) {
         super.onPostExecute(result);
+
+        if (this.prgDialog != null && this.prgDialog.isShowing()){
+            this.prgDialog.dismiss();
+        }
 
         if (result == 200){
             Toast.makeText(this.context, "Fue 200!", Toast.LENGTH_LONG).show();
@@ -101,4 +120,6 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
         }
         return 500;
     }
+
+
 }

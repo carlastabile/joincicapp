@@ -1,14 +1,21 @@
 package ve.com.joincic.joincicapp.views;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.widget.Toast;
 
 import java.util.List;
 
 import ve.com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.adapters.DemoCollectionPagerAdapter;
+import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.requesters.ScheduleRequester;
 
 /**
@@ -36,6 +43,11 @@ public class ScheduleActivity extends ParentActivity {
         ScheduleRequester requester = new ScheduleRequester(this);
         requester.execute();
     }
+
+    public void getInformation(){
+
+    }
+
 
     public void setNavigationTabs(){
         final ActionBar actionBar = getSupportActionBar();
