@@ -11,6 +11,7 @@ import android.text.TextUtils;
 
 import ve.com.joincic.joincicapp.models.JoincicDbHelper;
 import ve.com.joincic.joincicapp.models.PresentationModel;
+import ve.com.joincic.joincicapp.models.WorkTableModel;
 
 /**
  * Created by Carla Urrea Stabile on 4/23/15.
@@ -25,14 +26,19 @@ public class JoincicProvider extends ContentProvider{
 
     // Paths related to the user profile
     private static final String PATH_PRESENTATIONS = "presentations";
+    private static final String PATH_WORK_TABLES = "work_tables";
 
     // Content URIS
     public static final Uri CONTENT_URI_PRESENTATIONS = Uri
             .parse("content://" + AUTHORITY + "/" + PATH_PRESENTATIONS);
+    public static final Uri CONTENT_URI_WORK_TABLES = Uri
+            .parse("content://" + AUTHORITY + "/" + PATH_WORK_TABLES);
 
     //Ids
     private static final int PRESENTATIONS = 1;
     private static final int PRESENTATION_ID = 2;
+    private static final int WORK_TABLES = 3;
+    private static final int WORK_TABLE_ID = 4;
 
     //UriMatcher
     private static final UriMatcher sURIMatcher = new UriMatcher(
@@ -41,6 +47,9 @@ public class JoincicProvider extends ContentProvider{
         sURIMatcher.addURI(AUTHORITY, PATH_PRESENTATIONS, PRESENTATIONS);
         sURIMatcher.addURI(AUTHORITY, PATH_PRESENTATIONS + "/#",
                 PRESENTATION_ID);
+        sURIMatcher.addURI(AUTHORITY, PATH_WORK_TABLES, WORK_TABLES);
+        sURIMatcher.addURI(AUTHORITY, PATH_WORK_TABLES + "/#",
+                WORK_TABLE_ID);
     }
 
     @Override
@@ -66,7 +75,15 @@ public class JoincicProvider extends ContentProvider{
                 queryBuilder.appendWhere(PresentationModel.C_ID + "="
                         + uri.getLastPathSegment());
                 break;
-                        default:
+            case WORK_TABLES:
+                queryBuilder.setTables(WorkTableModel.TABLE_WORK_TABLE);
+                break;
+            case WORK_TABLE_ID:
+                // Adding the ID to the original query
+                queryBuilder.appendWhere(WorkTableModel.C_ID + "="
+                        + uri.getLastPathSegment());
+                break;
+            default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
 
         }
@@ -100,6 +117,12 @@ public class JoincicProvider extends ContentProvider{
                         SQLiteDatabase.CONFLICT_REPLACE);
                 getContext().getContentResolver().notifyChange(uri, null);
                 return Uri.parse(PATH_PRESENTATIONS + "/" + id);
+            case WORK_TABLES:
+                id = db.insertWithOnConflict(
+                        WorkTableModel.TABLE_WORK_TABLE, null, values,
+                        SQLiteDatabase.CONFLICT_REPLACE);
+                getContext().getContentResolver().notifyChange(uri, null);
+                return Uri.parse(PATH_WORK_TABLES + "/" + id);
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
 
@@ -116,6 +139,10 @@ public class JoincicProvider extends ContentProvider{
         switch (uriType) {
             case PRESENTATIONS:
                 count = db.delete(PresentationModel.TABLE_PRESENTATION,
+                        selection, selectionArgs);
+                break;
+            case WORK_TABLES:
+                count = db.delete(WorkTableModel.TABLE_WORK_TABLE,
                         selection, selectionArgs);
                 break;
             default:

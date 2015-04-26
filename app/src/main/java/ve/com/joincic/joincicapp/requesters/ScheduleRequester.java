@@ -55,7 +55,13 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
     @Override
     protected Integer doInBackground(String... params) {
 
-        return getPresentations();
+        int presentationsStatusCode = getPresentations();
+        int workTableStatusCode = getWorkTables();
+
+        int finalCode = presentationsStatusCode == 200 && workTableStatusCode == 200? 200 : 500;
+
+        return finalCode;
+
     }
 
     @Override
@@ -89,7 +95,7 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
                 int statusCode = response.getStatusLine().getStatusCode();
 
                 if (statusCode == 200) {
-                    Log.d(TAG,"FUe 200");
+                    Log.d(TAG,"FUe 200 PRESENTATIONS");
                     JSONArray json = new JSONArray(result.substring(
                             result.indexOf("["), result.lastIndexOf("]") + 1));
                     Log.d(TAG, "----" + json.toString());
@@ -121,5 +127,53 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
         return 500;
     }
 
+    /**
+     * */
+
+    public int getWorkTables(){
+        HttpGet get = new HttpGet(WORK_TABLES_PATH);
+        HttpClient client = new DefaultHttpClient();
+        HttpResponse response;
+
+        try {
+            response = client.execute(get);
+
+            if (response != null) {
+
+                String result = EntityUtils.toString(response.getEntity());
+                int statusCode = response.getStatusLine().getStatusCode();
+
+                if (statusCode == 200) {
+                    Log.d(TAG,"FUE 200 MESA DE TRABAJO");
+                    JSONArray json = new JSONArray(result.substring(
+                            result.indexOf("["), result.lastIndexOf("]") + 1));
+                    Log.d(TAG, "----" + json.toString());
+                    Gson gson = new Gson();
+                    Schedule[] p = gson.fromJson(json.toString(),
+                            Schedule[].class);
+
+                    Log.d(TAG, "----" +p.length);
+
+                    for (int i=0; i<p.length; i++){
+                        Log.d(TAG, "---- id " + p[i].getMesa_de_trabajo().getTitulo());
+                    }
+
+                    ArrayList<Schedule> workTables = new ArrayList<Schedule>(Arrays.asList(p));
+
+                    ScheduleController.getInstance(this.context);
+
+                    ScheduleController.insertWorkTables(workTables);
+                }
+                return statusCode;
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return 500;
+    }
 
 }

@@ -21,12 +21,14 @@ public class JoincicDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //should create all tables and relations here
         PresentationModel.onCreate(db);
+        WorkTableModel.onCreate(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //should update all tables and relations here
         PresentationModel.onUpgrade(db, oldVersion, newVersion);
+        WorkTableModel.onUpgrade(db, oldVersion, newVersion);
     }
 
 
