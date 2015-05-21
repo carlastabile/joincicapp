@@ -26,6 +26,7 @@ import ve.com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.adapters.DrawerItem;
 import ve.com.joincic.joincicapp.adapters.DrawerItemAdapter;
 import ve.com.joincic.joincicapp.application.JoincicApp;
+import ve.com.joincic.joincicapp.requesters.ScheduleRequester;
 
 /**
  * This class is the parent of all the classes of the JOINCIC App.
@@ -164,9 +165,8 @@ public abstract class ParentActivity extends ActionBarActivity {
                     startActivity(i);
                 }
             } else {
-                Intent i = new Intent(this, ScheduleActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(i);
+                ScheduleRequester requester = new ScheduleRequester(this);
+                requester.execute();
             }
 
         } else if (mPlanetTitles[position].equals(res.getString(R.string.map))){ //Map

@@ -1,11 +1,14 @@
 package ve.com.joincic.joincicapp.controllers;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Paint;
 import android.util.Log;
 
 import java.util.ArrayList;
 
+import ve.com.joincic.joincicapp.adapters.Item;
+import ve.com.joincic.joincicapp.adapters.ScheduleItem;
 import ve.com.joincic.joincicapp.models.PresentationModel;
 import ve.com.joincic.joincicapp.models.WorkTableModel;
 import ve.com.joincic.joincicapp.providers.JoincicProvider;
@@ -50,4 +53,55 @@ public class ScheduleController {
         }
 
     }
-}
+
+    /**
+     * Gets the presentations and work tables for the schedule list
+     * @return an array list of items
+     * */
+    public static ArrayList<Item> getSchedule(){
+        ArrayList<Item> items = new ArrayList<Item>();
+        Log.d(TAG, "Estoy en getSchedule");
+        //Get presentations
+        Cursor cursor = context.getContentResolver().query(JoincicProvider.CONTENT_URI_PRESENTATIONS, null, null,
+                null, null);
+
+        if (cursor.moveToFirst()){
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex(PresentationModel.C_ID));
+                String title = cursor.getString(cursor.getColumnIndex(PresentationModel.C_TITLE));
+                String startDate = cursor.getString(cursor.getColumnIndex(PresentationModel.C_START_HOUR));
+                String endDate = cursor.getString(cursor.getColumnIndex(PresentationModel.C_END_HOUR));
+                boolean isPresentation = true;
+
+                ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, null, title, null,
+                        startDate, endDate);
+                items.add(s);
+
+                Log.d(TAG, "Agregue a " +title);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        Cursor cursorWT = context.getContentResolver().query(JoincicProvider.CONTENT_URI_WORK_TABLES, null, null,
+                null, null);
+
+        if (cursorWT.moveToFirst()){
+            do {
+                int id = cursorWT.getInt(cursorWT.getColumnIndex(WorkTableModel.C_ID));
+                String title = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_TITLE));
+                String startDate = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_START_HOUR));
+                String endDate = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_END_HOUR));
+                boolean isPresentation = false;
+
+                ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, null, title, null,
+                        startDate, endDate);
+                items.add(s);
+                Log.d(TAG, "Agregue a " +title);
+
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return items;
+    }
+ }

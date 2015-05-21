@@ -12,6 +12,9 @@ import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Carla Urrea Stabile on 24/04/15.
  */
@@ -42,5 +45,22 @@ public class JoincicApp extends Application {
                 }
             }
         });
+    }
+
+    public static String getTime(String old){
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        Date dateObj;
+        String newDateStr = null;
+        try
+        {
+            dateObj = df.parse(old);
+            SimpleDateFormat fd = new SimpleDateFormat("hh:mma");
+            newDateStr = fd.format(dateObj);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return newDateStr;
     }
 }
