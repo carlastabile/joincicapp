@@ -13,7 +13,7 @@ import ve.com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.views.ScheduleActivity;
 
 /**
- * Created by carla on 02/04/15.
+ * Created by Carla Urrea Stabile on 02/04/15.
  */
 // Since this is an object collection, use a FragmentStatePagerAdapter,
 // and NOT a FragmentPagerAdapter.
@@ -27,7 +27,7 @@ public class DemoCollectionPagerAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = new DemoObjectFragment();
         Bundle args = new Bundle();
         // Our object is just an integer :-P
-        args.putInt(DemoObjectFragment.ARG_OBJECT, i + 1);
+        args.putInt(DemoObjectFragment.DAY_NUMBER, i + 1);
         fragment.setArguments(args);
         return fragment;
     }

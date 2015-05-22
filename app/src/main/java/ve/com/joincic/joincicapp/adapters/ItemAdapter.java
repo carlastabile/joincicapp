@@ -76,7 +76,7 @@ public class ItemAdapter extends BaseAdapter {
 
             TextView startDate = (TextView) row.findViewById(R.id.schedule_start_hour);
             if (startDate != null)
-                startDate.setText(JoincicApp.getTime(si.getStartDate()) + " - ");
+                startDate.setText(JoincicApp.getTime(si.getStartDate()) + " -");
 
             TextView endDate = (TextView) row.findViewById(R.id.schedule_end_hour);
             if (endDate != null)

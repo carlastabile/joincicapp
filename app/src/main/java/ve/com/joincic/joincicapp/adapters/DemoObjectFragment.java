@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ve.com.joincic.joincicapp.R;
+import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.controllers.ScheduleController;
 
 /**
@@ -21,7 +22,8 @@ import ve.com.joincic.joincicapp.controllers.ScheduleController;
 // Instances of this class are fragments representing a single
 // object in our collection.
 public class DemoObjectFragment extends Fragment {
-    public static final String ARG_OBJECT = "object";
+    public static final String DAY_NUMBER = "day_number";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -32,31 +34,35 @@ public class DemoObjectFragment extends Fragment {
                 R.layout.fragment_collection_object, container, false);
 
         Bundle args = getArguments();
-        int dayNumber = (Integer) args.get(ARG_OBJECT);
-        Log.d("", "el dia es " + dayNumber);
+        int dayNumber = args.getInt(DAY_NUMBER);
+        Log.d("", "el dia es " + dayNumber );
+
+
         switch (dayNumber){
             case 1: //Tuesday
-
+                showInfoByDay(rootView, JoincicApp.DAY_1);
                 break;
             case 2:
+                showInfoByDay(rootView, JoincicApp.DAY_2);
                 break;
             case 3:
+                showInfoByDay(rootView, JoincicApp.DAY_3);
                 break;
             case 4:
+                showInfoByDay(rootView, JoincicApp.DAY_4);
                 break;
             default:
                 break;
 
         }
-        showInfoByDay(rootView, dayNumber);
 //        ((TextView) rootView.findViewById(android.R.id.text1)).setText(
 //                Integer.toString(args.getInt(ARG_OBJECT)));
         return rootView;
     }
 
-    public void showInfoByDay(View v, int day){
+    public void showInfoByDay(View v, String day){
         ScheduleController.getInstance(getActivity());
-        ArrayList<Item> items = ScheduleController.getSchedule();
+        ArrayList<Item> items = ScheduleController.getSchedule(day);
 
         if (items != null){
             ItemAdapter adapter = new ItemAdapter(getActivity(), items);

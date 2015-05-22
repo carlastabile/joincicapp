@@ -6,9 +6,16 @@ import android.graphics.Paint;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 import ve.com.joincic.joincicapp.adapters.Item;
 import ve.com.joincic.joincicapp.adapters.ScheduleItem;
+import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.models.PresentationModel;
 import ve.com.joincic.joincicapp.models.WorkTableModel;
 import ve.com.joincic.joincicapp.providers.JoincicProvider;
@@ -58,12 +65,14 @@ public class ScheduleController {
      * Gets the presentations and work tables for the schedule list
      * @return an array list of items
      * */
-    public static ArrayList<Item> getSchedule(){
+    public static ArrayList<Item> getSchedule(String day){
         ArrayList<Item> items = new ArrayList<Item>();
-        Log.d(TAG, "Estoy en getSchedule");
         //Get presentations
-        Cursor cursor = context.getContentResolver().query(JoincicProvider.CONTENT_URI_PRESENTATIONS, null, null,
-                null, null);
+        String selection = PresentationModel.C_DAY + "=?";
+        String[] selectionArgs = {day};
+        String sortBy = "datetime(" + PresentationModel.C_START_HOUR + ") ASC";
+        Cursor cursor = context.getContentResolver().query(JoincicProvider.CONTENT_URI_PRESENTATIONS,
+                null, selection, selectionArgs, sortBy);
 
         if (cursor.moveToFirst()){
             do {
@@ -77,13 +86,14 @@ public class ScheduleController {
                         startDate, endDate);
                 items.add(s);
 
-                Log.d(TAG, "Agregue a " +title);
             }while (cursor.moveToNext());
         }
         cursor.close();
 
-        Cursor cursorWT = context.getContentResolver().query(JoincicProvider.CONTENT_URI_WORK_TABLES, null, null,
-                null, null);
+        selection = WorkTableModel.C_DAY + "=?";
+        sortBy = "datetime(" + WorkTableModel.C_START_HOUR + ") ASC";;
+        Cursor cursorWT = context.getContentResolver().query(JoincicProvider.CONTENT_URI_WORK_TABLES,
+                null, selection, selectionArgs, sortBy);
 
         if (cursorWT.moveToFirst()){
             do {
@@ -96,12 +106,45 @@ public class ScheduleController {
                 ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, null, title, null,
                         startDate, endDate);
                 items.add(s);
-                Log.d(TAG, "Agregue a " +title);
 
-            }while (cursor.moveToNext());
+            }while (cursorWT.moveToNext());
         }
-        cursor.close();
+        cursorWT.close();
+
+        sortItemsByHour(items);
 
         return items;
     }
+
+    /**
+     * Sorts the array list of items by hour
+     *
+     * @param items the array list to sort
+     * */
+    public static void sortItemsByHour(ArrayList<Item> items){
+
+        if (items != null) {
+            Comparator<Item> comparator = new Comparator<Item>() {
+                public int compare(Item c1, Item c2) {
+                    ScheduleItem s1 = (ScheduleItem) c1;
+                    ScheduleItem s2 = (ScheduleItem) c2;
+
+                    Date date1 = JoincicApp.stringToDate(s1.getStartDate());
+                    Date date2 = JoincicApp.stringToDate(s2.getStartDate());
+
+                    if (date1.getTime() < date2.getTime()){
+                        return -1;
+                    } else if (date1.getTime() > date2.getTime()){
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }
+            };
+
+            Collections.sort(items, comparator);
+        }
  }
+
+
+}
