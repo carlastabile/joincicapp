@@ -3,8 +3,9 @@ package ve.com.joincic.joincicapp.adapters;
 /**
  * Created by carla on 02/04/15.
  */
-public class ScheduleItem implements Item{
+public class ScheduleItem implements Item {
     int id;
+    boolean isPresentation;
     int sponsorId;
     int presenterId;
     String subject;
@@ -12,10 +13,14 @@ public class ScheduleItem implements Item{
     String description;
     String startDate;
     String endDate;
-    boolean isPresentation;
+    String day;
+
+    public String getDay() {
+        return day;
+    }
 
     public ScheduleItem(int id, boolean isPresentation, int sponsorId, int presenterId, String subject, String title,
-                        String description, String startDate, String endDate) {
+                        String description, String startDate, String endDate, String day) {
         this.id = id;
         this.sponsorId = sponsorId;
         this.presenterId = presenterId;
@@ -25,6 +30,8 @@ public class ScheduleItem implements Item{
         this.startDate = startDate;
         this.endDate = endDate;
         this.isPresentation = isPresentation;
+        this.day = day;
+
     }
 
     public int getId() {

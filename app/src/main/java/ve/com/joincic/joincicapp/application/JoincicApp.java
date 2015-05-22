@@ -21,6 +21,7 @@ import java.util.Date;
 public class JoincicApp extends Application {
     public final static String TAG = "JoincicApp";
     public  final static String REQUEST_PREFS = "request_prefs";
+    public final static String SCHEDULE_PREFS = "schedule_prefs";
     public final static String SCHEDULE_REQUEST = "schedule_request";
     public final static String PARSE_APP_KEY = "GjE0qnaXb9uf7zePIhR1pN0lSrNIaSXAheM0PsJQ";
     public final static String PARSE_CLIENT_KEY = "s9aMpYXNCA0yQGcRs1UTmogarzFHwZlhtuGP79ex";

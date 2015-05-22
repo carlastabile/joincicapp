@@ -18,7 +18,7 @@ import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.controllers.Schedule;
 
 /**
- * Created by carla on 20/05/15.
+ * Created by Carla Urrea Stabile on 20/05/15.
  */
 public class ItemAdapter extends BaseAdapter {
     Context context;

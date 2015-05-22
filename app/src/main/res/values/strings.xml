@@ -36,4 +36,6 @@
     <string name="joincic_location">Conjunto de Auditorios. Universidad Simón Bolívar. Caracas, Venezuela</string>
     <string name="loading">Cargando...</string>
     <string name="no_connection">No tienes conexion a internet en este momento, intenta de nuevo mas tarde.</string>
+    <string name="presentation">Ponencia</string>
+    <string name="work_table">Mesa de Trabajo</string>
 </resources>
