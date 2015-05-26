@@ -45,4 +45,8 @@
     <string name="validate_error">Ocurrió un error validando el número de cédula. Por favor intenta de nuevo más tarde.</string>
     <string name="ci_blank">Debe ingresar un número de cédula válido</string>
     <string name="assistant_not_found">La cédula no se encuentra registrada en el sistema.</string>
+    <string name="enrolling">Registrando en la mesa de trabajo...</string>
+    <string name="enroll_success">Te has registrado satisfactoriamente en la mesa de trabajo</string>
+    <string name="mt_not_found">No se ha encontrado la mesa de trabajo a la que has querido registrarte. Dirigite a la mesa de registro para mas informacion.</string>
+    <string name="enroll_error">No se ha podido registrar en la mesa de trabajo. Por favor dirigete directamente a la mesa de registro</string>
 </resources>
