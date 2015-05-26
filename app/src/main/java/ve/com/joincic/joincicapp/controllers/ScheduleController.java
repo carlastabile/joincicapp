@@ -2,7 +2,9 @@ package ve.com.joincic.joincicapp.controllers;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Paint;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

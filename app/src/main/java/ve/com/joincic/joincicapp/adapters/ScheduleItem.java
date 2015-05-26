@@ -15,7 +15,48 @@ public class ScheduleItem implements Item {
     String endDate;
     String day;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPresentation(boolean isPresentation) {
+        this.isPresentation = isPresentation;
+    }
+
+    public void setSponsorId(int sponsorId) {
+        this.sponsorId = sponsorId;
+    }
+
+    public void setPresenterId(int presenterId) {
+        this.presenterId = presenterId;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
     public String getDay() {
+
         return day;
     }
 

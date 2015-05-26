@@ -2,8 +2,13 @@ package ve.com.joincic.joincicapp.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import ve.com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.adapters.ScheduleItem;
@@ -43,13 +48,15 @@ public class ScheduleItemDetailsActivity extends ParentActivity {
             presenterTextV.setText(presenterName);
         }
         if (day != null && dayTextV != null){
+            Date date = JoincicApp.stringToDate(day);
+            day = new SimpleDateFormat("EEEE").format(date);
             dayTextV.setText(day);
         }
         if (startDate != null && startHourTextV != null){
-            startHourTextV.setText(startDate);
+            startHourTextV.setText(JoincicApp.getTime(startDate));
         }
         if (endDate != null && endHourTextV != null){
-            endHourTextV.setText(endDate);
+            endHourTextV.setText(JoincicApp.getTime(endDate));
         }
         if (description != null && desc != null){
             desc.setText(description);

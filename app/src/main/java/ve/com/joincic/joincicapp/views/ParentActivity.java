@@ -39,13 +39,17 @@ public abstract class ParentActivity extends ActionBarActivity {
     private String[] mPlanetTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+    Resources res;
 
     protected abstract int getLayoutId();
+
     protected abstract String getActivityName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        res = getResources();
 
         setContentView(getLayoutId());
         setActivityName(getActivityName());
@@ -54,7 +58,7 @@ public abstract class ParentActivity extends ActionBarActivity {
 
     }
 
-    public void setActivityName(String name){
+    public void setActivityName(String name) {
         getSupportActionBar().setTitle(name);
     }
 
@@ -137,7 +141,7 @@ public abstract class ParentActivity extends ActionBarActivity {
     /**
      * Takes the user to the corresponding activity depending on the option they selected
      * in the menu
-     * */
+     */
     private void selectItem(int position) {
 
         Resources res = getResources();
@@ -145,12 +149,12 @@ public abstract class ParentActivity extends ActionBarActivity {
 
         if (mPlanetTitles[position] == null) {
             return;
-        } else if (mPlanetTitles[position].equals(res.getString(R.string.about_us))){ //About us
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.about_us))) { //About us
             Intent i = new Intent(this, HomeActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(i);
 
-        } else if (mPlanetTitles[position].equals(res.getString(R.string.calendar))){ //Calendar
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.calendar))) { //Calendar
 
             boolean savedData = prefs.getBoolean(JoincicApp.SCHEDULE_REQUEST, false);
 
@@ -169,21 +173,23 @@ public abstract class ParentActivity extends ActionBarActivity {
                 requester.execute();
             }
 
-        } else if (mPlanetTitles[position].equals(res.getString(R.string.map))){ //Map
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.map))) { //Map
 
             if (!isNetworkAvailable()) {
                 Toast.makeText(this,
-                            getResources().getString(R.string.no_connection),
-                            Toast.LENGTH_LONG).show();
+                        getResources().getString(R.string.no_connection),
+                        Toast.LENGTH_LONG).show();
             } else {
                 Intent i = new Intent(this, MapActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(i);
             }
 
-        } else if (mPlanetTitles[position].equals(res.getString(R.string.pratical_work))){ //Practical Work
-
-        } else if (mPlanetTitles[position].equals(res.getString(R.string.questions))){ //Questions
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.enroll_work_table))) { //Practical Work
+            Intent i = new Intent(this, EnrollWorkTableActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
+        } else if (mPlanetTitles[position].equals(res.getString(R.string.questions))) { //Questions
 
         } else {
             return;
@@ -198,8 +204,8 @@ public abstract class ParentActivity extends ActionBarActivity {
      * Gets the id of the icon for the menu
      *
      * @return an array of integer with the ids
-     * */
-    public ArrayList<Integer> getIconIds(){
+     */
+    public ArrayList<Integer> getIconIds() {
         ArrayList<Integer> iconIds = new ArrayList<Integer>();
 
         iconIds.add(R.drawable.ic_question);

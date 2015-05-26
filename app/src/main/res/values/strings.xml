@@ -13,7 +13,7 @@
         <item name="about_us">Nosotros</item>
         <item name="calendar">Agenda</item>
         <item name="map">Mapa</item>
-        <item name="pratical_work">Mesas de Trabajo</item>
+        <item name="pratical_work">Inscribirse en una Mesa de Trabajo</item>
         <item name="questions">Preguntas a Ponentes</item>
     </string-array>
 
@@ -38,4 +38,11 @@
     <string name="no_connection">No tienes conexion a internet en este momento, intenta de nuevo mas tarde.</string>
     <string name="presentation">Ponencia</string>
     <string name="work_table">Mesa de Trabajo</string>
+    <string name="introduce_ci">Introduce tu número de cédula</string>
+    <string name="enroll_work_table">Inscribirse en una Mesa de Trabajo</string>
+    <string name="validate">Validar</string>
+    <string name="schedule_error">Ocurrío un error intentando obtener la agenda. Intente de nuevo más tarde.</string>
+    <string name="validate_error">Ocurrió un error validando el número de cédula. Por favor intenta de nuevo más tarde.</string>
+    <string name="ci_blank">Debe ingresar un número de cédula válido</string>
+    <string name="assistant_not_found">La cédula no se encuentra registrada en el sistema.</string>
 </resources>

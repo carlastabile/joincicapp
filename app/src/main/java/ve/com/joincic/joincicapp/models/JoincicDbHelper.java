@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import ve.com.joincic.joincicapp.controllers.Assistant;
+
 /**
  * Created by Carla Urrea Stabile on 4/23/15.
  */
@@ -22,6 +24,7 @@ public class JoincicDbHelper extends SQLiteOpenHelper {
         //should create all tables and relations here
         PresentationModel.onCreate(db);
         WorkTableModel.onCreate(db);
+        AssistantModel.onCreate(db);
     }
 
     @Override
@@ -29,6 +32,7 @@ public class JoincicDbHelper extends SQLiteOpenHelper {
         //should update all tables and relations here
         PresentationModel.onUpgrade(db, oldVersion, newVersion);
         WorkTableModel.onUpgrade(db, oldVersion, newVersion);
+        AssistantModel.onUpgrade(db, oldVersion, newVersion);
     }
 
 

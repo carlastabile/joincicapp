@@ -70,16 +70,19 @@ public class JoincicApp extends Application {
     }
 
     public static Date stringToDate(String date){
-        final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        String[] dateFormats = {"yyyy-MM-dd'T'HH:mm:ss'Z'", "yyyy-MM-dd"};
+
+        SimpleDateFormat df;
         Date dateObj;
-        try
-        {
-            dateObj = df.parse(date);
-            return dateObj;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
+
+        for (String formatString : dateFormats){
+            try{
+                df = new SimpleDateFormat(formatString);
+                dateObj = df.parse(date);
+                return dateObj;
+
+            }
+            catch (Exception e) {}
         }
         return null;
     }

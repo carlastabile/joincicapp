@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import ve.com.joincic.joincicapp.models.AssistantModel;
 import ve.com.joincic.joincicapp.models.JoincicDbHelper;
 import ve.com.joincic.joincicapp.models.PresentationModel;
 import ve.com.joincic.joincicapp.models.WorkTableModel;
@@ -27,18 +28,23 @@ public class JoincicProvider extends ContentProvider{
     // Paths related to the user profile
     private static final String PATH_PRESENTATIONS = "presentations";
     private static final String PATH_WORK_TABLES = "work_tables";
+    private static final String PATH_ASSISTANTS = "assistants";
 
     // Content URIS
     public static final Uri CONTENT_URI_PRESENTATIONS = Uri
             .parse("content://" + AUTHORITY + "/" + PATH_PRESENTATIONS);
     public static final Uri CONTENT_URI_WORK_TABLES = Uri
             .parse("content://" + AUTHORITY + "/" + PATH_WORK_TABLES);
+    public static final Uri CONTENET_URI_ASSISTANTS = Uri
+            .parse("content://" + AUTHORITY + "/" + PATH_ASSISTANTS);
 
     //Ids
     private static final int PRESENTATIONS = 1;
     private static final int PRESENTATION_ID = 2;
     private static final int WORK_TABLES = 3;
     private static final int WORK_TABLE_ID = 4;
+    private static final int ASSISTANTS = 5;
+    private static final int ASSISTANT_ID = 6;
 
     //UriMatcher
     private static final UriMatcher sURIMatcher = new UriMatcher(
@@ -50,6 +56,9 @@ public class JoincicProvider extends ContentProvider{
         sURIMatcher.addURI(AUTHORITY, PATH_WORK_TABLES, WORK_TABLES);
         sURIMatcher.addURI(AUTHORITY, PATH_WORK_TABLES + "/#",
                 WORK_TABLE_ID);
+        sURIMatcher.addURI(AUTHORITY, PATH_ASSISTANTS, ASSISTANTS);
+        sURIMatcher.addURI(AUTHORITY, PATH_ASSISTANTS + "/#",
+                ASSISTANT_ID);
     }
 
     @Override
@@ -81,6 +90,14 @@ public class JoincicProvider extends ContentProvider{
             case WORK_TABLE_ID:
                 // Adding the ID to the original query
                 queryBuilder.appendWhere(WorkTableModel.C_ID + "="
+                        + uri.getLastPathSegment());
+                break;
+            case ASSISTANTS:
+                queryBuilder.setTables(AssistantModel.TABLE_ASSISTANT);
+                break;
+            case ASSISTANT_ID:
+                // Adding the ID to the original query
+                queryBuilder.appendWhere(AssistantModel.C_ID + "="
                         + uri.getLastPathSegment());
                 break;
             default:
@@ -123,6 +140,12 @@ public class JoincicProvider extends ContentProvider{
                         SQLiteDatabase.CONFLICT_REPLACE);
                 getContext().getContentResolver().notifyChange(uri, null);
                 return Uri.parse(PATH_WORK_TABLES + "/" + id);
+            case ASSISTANTS:
+                id = db.insertWithOnConflict(
+                        AssistantModel.TABLE_ASSISTANT, null, values,
+                        SQLiteDatabase.CONFLICT_REPLACE);
+                getContext().getContentResolver().notifyChange(uri, null);
+                return Uri.parse(PATH_ASSISTANTS + "/" + id);
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
 
@@ -143,6 +166,10 @@ public class JoincicProvider extends ContentProvider{
                 break;
             case WORK_TABLES:
                 count = db.delete(WorkTableModel.TABLE_WORK_TABLE,
+                        selection, selectionArgs);
+                break;
+            case ASSISTANTS:
+                count = db.delete(AssistantModel.TABLE_ASSISTANT,
                         selection, selectionArgs);
                 break;
             default:

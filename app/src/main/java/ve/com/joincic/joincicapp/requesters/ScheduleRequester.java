@@ -75,12 +75,12 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
         }
 
         if (result == 200){
-            Toast.makeText(this.context, "Fue 200!", Toast.LENGTH_LONG).show();
             Intent i = new Intent(context, ScheduleActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             context.startActivity(i);
         } else {
-            Toast.makeText(this.context, "Hubo un error!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.context, this.context.getResources().getString(R.string.schedule_error),
+                    Toast.LENGTH_LONG).show();
         }
 
 
