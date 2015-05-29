@@ -1,9 +1,11 @@
 package ve.com.joincic.joincicapp.controllers;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 
+import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.models.AssistantModel;
 import ve.com.joincic.joincicapp.models.PresentationModel;
 import ve.com.joincic.joincicapp.providers.JoincicProvider;

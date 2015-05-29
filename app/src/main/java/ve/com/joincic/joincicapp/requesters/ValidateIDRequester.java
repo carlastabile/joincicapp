@@ -2,9 +2,11 @@ package ve.com.joincic.joincicapp.requesters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -26,6 +28,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import ve.com.joincic.joincicapp.R;
+import ve.com.joincic.joincicapp.adapters.Item;
+import ve.com.joincic.joincicapp.adapters.ItemAdapter;
+import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.controllers.Assistant;
 import ve.com.joincic.joincicapp.controllers.AssistantController;
 import ve.com.joincic.joincicapp.controllers.Schedule;
@@ -61,9 +66,16 @@ public class ValidateIDRequester extends AsyncTask<String, Integer, Integer> {
     @Override
     protected Integer doInBackground(String... params) {
 
-        int validateCode = validate();
+        int validateCode = validate(), wtCode;
 
-        return validateCode;
+        if (validateCode == 200){
+            ScheduleRequester requester = new ScheduleRequester(this.context, true);
+             wtCode = requester.getWorkTables();
+             return wtCode;
+        } else {
+            return validateCode;
+        }
+
 
     }
 
@@ -79,7 +91,11 @@ public class ValidateIDRequester extends AsyncTask<String, Integer, Integer> {
             RelativeLayout enrollLayout = EnrollWorkTableActivity.getEnrollLayout();
             RelativeLayout validateLayout = EnrollWorkTableActivity.getValidateLayout();
             enrollLayout.setVisibility(View.VISIBLE);
+            Log.d(TAG, "enroll layout esta " +enrollLayout.getVisibility());
             validateLayout.setVisibility(View.GONE);
+            Log.d(TAG, "validate layout esta " +validateLayout.getVisibility());
+
+            EnrollWorkTableActivity.setList(this.context);
         } else if (result == 404) {
             Toast.makeText(this.context, context.getResources().getString(R.string.assistant_not_found),
                     Toast.LENGTH_LONG).show();
@@ -90,6 +106,7 @@ public class ValidateIDRequester extends AsyncTask<String, Integer, Integer> {
 
 
     }
+
 
     public int validate() {
         HttpGet get = new HttpGet(VALIDATE_PATH + ci);
@@ -118,6 +135,13 @@ public class ValidateIDRequester extends AsyncTask<String, Integer, Integer> {
 
                     AssistantController.getInstance(context);
                     AssistantController.insertAssistant(a);
+                    SharedPreferences prefs = context.getSharedPreferences(JoincicApp.ASSISTANT_PREFS,
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt(JoincicApp.ASSISTANT_CI, a.getParticipante().getCedula());
+                    editor.putString(JoincicApp.ASSISTANT_NAME, a.getParticipante().getNombre() + " " +
+                            a.getParticipante().getApellido());
+                    editor.apply();
                 }
                 return statusCode;
             }

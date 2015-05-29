@@ -39,7 +39,7 @@ public abstract class ParentActivity extends ActionBarActivity {
     private String[] mPlanetTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
-    Resources res;
+    static Resources res;
 
     protected abstract int getLayoutId();
 
@@ -169,7 +169,7 @@ public abstract class ParentActivity extends ActionBarActivity {
                     startActivity(i);
                 }
             } else {
-                ScheduleRequester requester = new ScheduleRequester(this);
+                ScheduleRequester requester = new ScheduleRequester(this, false);
                 requester.execute();
             }
 

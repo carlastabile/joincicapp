@@ -49,4 +49,10 @@
     <string name="enroll_success">Te has registrado satisfactoriamente en la mesa de trabajo</string>
     <string name="mt_not_found">No se ha encontrado la mesa de trabajo a la que has querido registrarte. Dirigite a la mesa de registro para mas informacion.</string>
     <string name="enroll_error">No se ha podido registrar en la mesa de trabajo. Por favor dirigete directamente a la mesa de registro</string>
+    <string name="no_work_tables_found">No se han econtrado mesas de trabajo para la fecha</string>
+    <string name="unknown_error">Ocurrió un error inesperado. Por favor intenta más tarde.</string>
+    <string name="confirm">Confirmarción</string>
+    <string name="enroll_confirm">¿Estás seguro que deseas inscribirte en ésta mesa de trabajo?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 </resources>

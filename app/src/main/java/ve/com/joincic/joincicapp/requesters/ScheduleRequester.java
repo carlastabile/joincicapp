@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import ve.com.joincic.joincicapp.R;
-import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.controllers.Schedule;
 import ve.com.joincic.joincicapp.controllers.ScheduleController;
 import ve.com.joincic.joincicapp.views.ScheduleActivity;
@@ -38,18 +37,22 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
     Context context;
     ProgressDialog prgDialog;
 
-    public ScheduleRequester(Context context) {
+
+    public ScheduleRequester(Context context, boolean fromValidate) {
         this.context = context;
-        this.prgDialog = new ProgressDialog(this.context);
-        this.prgDialog.setMessage(this.context.getResources().getString(R.string.loading));
-        this.prgDialog.setCancelable(false);
+
+        if (!fromValidate) {
+            this.prgDialog = new ProgressDialog(this.context);
+            this.prgDialog.setMessage(this.context.getResources().getString(R.string.loading));
+            this.prgDialog.setCancelable(false);
+        }
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
 
-        if (this.prgDialog != null && !this.prgDialog.isShowing()){
+        if (this.prgDialog != null && !this.prgDialog.isShowing()) {
             this.prgDialog.show();
         }
     }
@@ -57,10 +60,12 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
     @Override
     protected Integer doInBackground(String... params) {
 
-        int presentationsStatusCode = getPresentations();
-        int workTableStatusCode = getWorkTables();
+        int workTableStatusCode = getWorkTables(), presentationsStatusCode = 0;
 
-        int finalCode = presentationsStatusCode == 200 && workTableStatusCode == 200? 200 : 500;
+        presentationsStatusCode = getPresentations();
+
+
+        int finalCode = presentationsStatusCode == 200 && workTableStatusCode == 200 ? 200 : 500;
 
         return finalCode;
 
@@ -70,11 +75,11 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
     protected void onPostExecute(Integer result) {
         super.onPostExecute(result);
 
-        if (this.prgDialog != null && this.prgDialog.isShowing()){
+        if (this.prgDialog != null && this.prgDialog.isShowing()) {
             this.prgDialog.dismiss();
         }
 
-        if (result == 200){
+        if (result == 200) {
             Intent i = new Intent(context, ScheduleActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             context.startActivity(i);
@@ -86,7 +91,7 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
 
     }
 
-    public int getPresentations(){
+    public int getPresentations() {
         HttpGet get = new HttpGet(PRESENTATIONS_PATH);
         HttpClient client = new DefaultHttpClient();
         HttpResponse response;
@@ -100,7 +105,7 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
                 int statusCode = response.getStatusLine().getStatusCode();
 
                 if (statusCode == 200) {
-                    Log.d(TAG,"FUe 200 PRESENTATIONS");
+                    Log.d(TAG, "FUe 200 PRESENTATIONS");
                     JSONArray json = new JSONArray(result.substring(
                             result.indexOf("["), result.lastIndexOf("]") + 1));
                     Log.d(TAG, "----" + json.toString());
@@ -108,9 +113,9 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
                     Schedule[] p = gson.fromJson(json.toString(),
                             Schedule[].class);
 
-                        Log.d(TAG, "----" +p.length);
+                    Log.d(TAG, "----" + p.length);
 
-                    for (int i=0; i<p.length; i++){
+                    for (int i = 0; i < p.length; i++) {
                         Log.d(TAG, "---- id " + p[i].getPonencia().getTitulo());
                     }
 
@@ -135,7 +140,7 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
     /**
      * */
 
-    public int getWorkTables(){
+    public int getWorkTables() {
         HttpGet get = new HttpGet(WORK_TABLES_PATH);
         HttpClient client = new DefaultHttpClient();
         HttpResponse response;
@@ -149,7 +154,7 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
                 int statusCode = response.getStatusLine().getStatusCode();
 
                 if (statusCode == 200) {
-                    Log.d(TAG,"FUE 200 MESA DE TRABAJO");
+                    Log.d(TAG, "FUE 200 MESA DE TRABAJO");
                     JSONArray json = new JSONArray(result.substring(
                             result.indexOf("["), result.lastIndexOf("]") + 1));
                     Log.d(TAG, "----" + json.toString());
@@ -157,9 +162,9 @@ public class ScheduleRequester extends AsyncTask<String, Integer, Integer> {
                     Schedule[] p = gson.fromJson(json.toString(),
                             Schedule[].class);
 
-                    Log.d(TAG, "----" +p.length);
+                    Log.d(TAG, "----" + p.length);
 
-                    for (int i=0; i<p.length; i++){
+                    for (int i = 0; i < p.length; i++) {
                         Log.d(TAG, "---- id " + p[i].getMesa_de_trabajo().getTitulo());
                     }
 

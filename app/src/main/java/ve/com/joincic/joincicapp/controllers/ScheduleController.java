@@ -3,6 +3,7 @@ package ve.com.joincic.joincicapp.controllers;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Paint;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -95,7 +96,7 @@ public class ScheduleController {
 
         selection = WorkTableModel.C_DAY + "=?";
         sortBy = "datetime(" + WorkTableModel.C_START_HOUR + ") ASC";
-        ;
+
         Cursor cursorWT = context.getContentResolver().query(JoincicProvider.CONTENT_URI_WORK_TABLES,
                 null, selection, selectionArgs, sortBy);
 
@@ -120,6 +121,42 @@ public class ScheduleController {
 
         sortItemsByHour(items);
 
+        return items;
+    }
+
+    /**
+     * Gets the work tables
+     * */
+    public static ArrayList<Item> getWorkTables(String day){
+        ArrayList<Item> items = new ArrayList<Item>();
+        String selection = PresentationModel.C_DAY + "=?";
+        String[] selectionArgs = {day};
+        String sortBy = "datetime(" + WorkTableModel.C_START_HOUR + ") ASC";
+
+        Cursor cursorWT = context.getContentResolver().query(JoincicProvider.CONTENT_URI_WORK_TABLES,
+                null, selection, selectionArgs, sortBy);
+
+        if (cursorWT.moveToFirst()) {
+            do {
+                int id = cursorWT.getInt(cursorWT.getColumnIndex(WorkTableModel.C_ID));
+                String title = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_TITLE));
+                String startDate = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_START_HOUR));
+                String endDate = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_END_HOUR));
+                String desc = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_DESCRIPTION));
+                String dayy = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_DAY));
+
+                boolean isPresentation = false;
+
+                ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, null, title, desc,
+                        startDate, endDate, dayy);
+                items.add(s);
+                Log.d(TAG, "Agregue a " +title);
+
+            } while (cursorWT.moveToNext());
+        }
+        cursorWT.close();
+
+        sortItemsByHour(items);
         return items;
     }
 

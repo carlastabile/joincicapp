@@ -12,15 +12,22 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ve.com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.controllers.Assistant;
@@ -32,7 +39,7 @@ import ve.com.joincic.joincicapp.views.EnrollWorkTableActivity;
  */
 public class EnrollWorTableRequester extends AsyncTask<String, Integer, Integer> {
     private static String TAG = "EnrollWorTableRequester";
-    private static String ENROLL_PATH = "http://sistema.joincic.com.ve/";
+    private static String ENROLL_PATH = "http://sistema.joincic.com.ve/participantes_mesa/create.json";
     Context context;
     int ci, wtId;
     ProgressDialog prgDialog;
@@ -87,20 +94,32 @@ public class EnrollWorTableRequester extends AsyncTask<String, Integer, Integer>
     }
 
     public int enroll() {
-        HttpGet get = new HttpGet(ENROLL_PATH + ci); //change
+        HttpPost get = new HttpPost(ENROLL_PATH + ci); //change
         HttpClient client = new DefaultHttpClient();
         HttpResponse response;
+
+        List<NameValuePair> postParams = new ArrayList<NameValuePair>();
+        postParams.add(new BasicNameValuePair("participantes_mesa[paticipante_id]", String.valueOf(ci)));
+        postParams.add(new BasicNameValuePair("participantes_mesa[mesa_de_trabajo_id]",
+                String.valueOf(wtId)));
+        UrlEncodedFormEntity encodedParams;
+
+        try {
+            encodedParams = new UrlEncodedFormEntity(postParams, "UTF-8");
+            get.setEntity(encodedParams);
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
 
         try {
             response = client.execute(get);
 
             if (response != null) {
 
-                String result = EntityUtils.toString(response.getEntity());
                 int statusCode = response.getStatusLine().getStatusCode();
 
                 if (statusCode == 200) {
-                    Log.d(TAG, "FUE 200 VALIDATE");
+                    Log.d(TAG, "FUE 200 INSCRIPCION");
                 }
                 return statusCode;
             }
