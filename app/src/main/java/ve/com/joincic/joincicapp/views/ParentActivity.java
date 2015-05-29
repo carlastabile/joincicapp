@@ -189,7 +189,7 @@ public abstract class ParentActivity extends ActionBarActivity {
             Intent i = new Intent(this, EnrollWorkTableActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(i);
-        } else if (mPlanetTitles[position].equals(res.getString(R.string.questions))) { //Questions
+//        } else if (mPlanetTitles[position].equals(res.getString(R.string.questions))) { //Questions
 
         } else {
             return;
