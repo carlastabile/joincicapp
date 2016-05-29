@@ -26,10 +26,10 @@ public class JoincicApp extends Application {
     public final static String SCHEDULE_REQUEST = "schedule_request";
     public final static String PARSE_APP_KEY = "GjE0qnaXb9uf7zePIhR1pN0lSrNIaSXAheM0PsJQ";
     public final static String PARSE_CLIENT_KEY = "s9aMpYXNCA0yQGcRs1UTmogarzFHwZlhtuGP79ex";
-    public static final String DAY_1 = "2015-06-02";
-    public static final String DAY_2 = "2015-06-03";
-    public static final String DAY_3 = "2015-06-04";
-    public static final String DAY_4 = "2015-06-05";
+    public static final String DAY_1 = "2016-06-01";
+    public static final String DAY_2 = "2016-06-02";
+    public static final String DAY_3 = "2016-06-03";
+    public static final String DAY_4 = "2016-06-04";
     public static final String ASSISTANT_NAME = "assistant_name";
     public static final String ASSISTANT_CI = "assistant_ci";
 
@@ -56,7 +56,8 @@ public class JoincicApp extends Application {
     }
 
     public static String getTime(String old){
-        final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
         Date dateObj;
         String newDateStr = null;
         try
@@ -64,6 +65,7 @@ public class JoincicApp extends Application {
             dateObj = df.parse(old);
             SimpleDateFormat fd = new SimpleDateFormat("hh:mma");
             newDateStr = fd.format(dateObj);
+            Log.d(TAG, "hora es:" + newDateStr);
         }
         catch (Exception e)
         {

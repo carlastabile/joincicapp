@@ -28,10 +28,10 @@
 
     <!--Schedule stuff-->
     <string-array name="schedule_days">
-        <item name="first_day">Martes</item>
-        <item name="second_day">Miercoles</item>
-        <item name="third_day">Jueves</item>
-        <item name="fourth_day">Viernes</item>
+        <item name="first_day">Miércoles</item>
+        <item name="second_day">Jueves</item>
+        <item name="third_day">Viernes</item>
+        <item name="fourth_day">Sábado</item>
     </string-array>
 
     <!--Map strings-->
