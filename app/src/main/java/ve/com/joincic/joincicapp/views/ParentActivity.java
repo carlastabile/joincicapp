@@ -208,11 +208,10 @@ public abstract class ParentActivity extends ActionBarActivity {
     public ArrayList<Integer> getIconIds() {
         ArrayList<Integer> iconIds = new ArrayList<Integer>();
 
-        iconIds.add(R.drawable.ic_question);
+        iconIds.add(R.drawable.ic_home);
         iconIds.add(R.drawable.ic_calendar);
         iconIds.add(R.drawable.ic_map);
         iconIds.add(R.drawable.ic_practical_work);
-        iconIds.add(R.drawable.ic_question);
 
         return iconIds;
     }

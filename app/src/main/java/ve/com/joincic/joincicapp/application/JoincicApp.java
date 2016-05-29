@@ -75,7 +75,7 @@ public class JoincicApp extends Application {
     }
 
     public static Date stringToDate(String date){
-        String[] dateFormats = {"yyyy-MM-dd'T'HH:mm:ss'Z'", "yyyy-MM-dd"};
+        String[] dateFormats = {"yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-dd"};
 
         SimpleDateFormat df;
         Date dateObj;

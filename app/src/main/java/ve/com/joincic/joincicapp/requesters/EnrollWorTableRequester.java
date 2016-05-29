@@ -48,6 +48,7 @@ public class EnrollWorTableRequester extends AsyncTask<String, Integer, Integer>
         this.context = context;
         this.ci = ci;
         this.wtId = wtId;
+        Log.d(TAG, "cedula " + ci + " id = " +wtId );
         this.prgDialog = new ProgressDialog(this.context);
         this.prgDialog.setMessage(this.context.getResources().getString(R.string.enrolling));
         this.prgDialog.setCancelable(false);
@@ -78,6 +79,7 @@ public class EnrollWorTableRequester extends AsyncTask<String, Integer, Integer>
         if (prgDialog != null && prgDialog.isShowing()) {
             prgDialog.dismiss();
         }
+        Log.d(TAG, "ENROLL FUE " + result);
 
         if (result == 200) {
             Toast.makeText(this.context, context.getResources().getString(R.string.enroll_success),
