@@ -26,8 +26,7 @@ public class MapActivity extends ParentActivity {
     public final static String TAG = "MapActivity";
     ImageView mapImageView;
     Resources res;
-
-    static final LatLng JOINCIC_LOCATION = new LatLng(10.410236, -66.882526);
+    static final LatLng JOINCIC_LOCATION = new LatLng(10.4652016, -66.975719);
     private GoogleMap map;
 
     @Override

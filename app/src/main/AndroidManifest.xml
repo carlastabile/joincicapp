@@ -84,7 +84,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBaGi_pO9YSMNU4m2sv1JP7Ohk1_Ewh1EE" />
+            android:value="AIzaSyBNN5mvoAm7UlmNq4nhyZAqEXUYZVrOvos" />
         <!-- replace @drawable/push_icon with your push icon identifier -->
         <meta-data android:name="com.parse.push.notification_icon" android:resource="@drawable/ic_joincic_logo"/>
         <service android:name="com.parse.PushService" />

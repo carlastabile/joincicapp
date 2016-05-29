@@ -20,45 +20,30 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context=".HomeActivity"
-        android:background="@drawable/home_background">
+        android:background="#FFFFFF">
 
         <TextView
-            android:text="@string/joincic"
+            android:text="@string/welcome_joincic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textAlignment="center"
-            android:gravity="center_horizontal|end"
+            android:gravity="center_horizontal"
             android:padding="5dp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textColor="#000000"
             android:id="@+id/home_activity_joincic_name"
-            android:layout_alignBottom="@+id/activity_home_logo"
-            android:layout_toRightOf="@+id/activity_home_logo"
-            android:layout_toEndOf="@+id/activity_home_logo" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/joincic_description"
-            android:id="@+id/home_activity_joincic_description"
-            android:textAlignment="inherit"
-            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:gravity="center_horizontal" />
+            android:layout_alignParentStart="true" />
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/activity_home_logo"
-            android:src="@drawable/ic_joincic_logo"
+            android:src="@drawable/joincic_logo"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_above="@+id/relativeLayout" />
+            android:layout_centerHorizontal="true" />
 
         <!--<RelativeLayout-->
             <!--android:layout_width="wrap_content"-->
@@ -104,7 +89,7 @@
 
     </RelativeLayout>
 
-    <!--<!- The main content view -->-->
+    <!--<!- The main content view -->
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"

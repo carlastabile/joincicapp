@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">8vas JOINCIC</string>
+    <string name="app_name">9nas JOINCIC</string>
 
     <string name="action_settings">Settings</string>
-    <string name="joincic">8vas Jornadas Interuniversitarias de Ciencias de la Computación</string>
+    <string name="joincic">9nas Jornadas Interuniversitarias de Ciencias de la Computación</string>
+    <string name="welcome_joincic">¡Bienvenido a las 9nas Jornadas Interuniversitarias de Ciencias de la Computación!</string>
+
     <string name="joincic_description">El objetivo central de estas Jornadas es reunir a destacados investigadores para intercambiar conocimientos e innovaciones en Ciencias de la Computación entre profesionales, empresarios y estudiantes. Las JOINCIC se han realizado exitosamente desde hace 8 años, contando con la participación de las más prestigiosas universidades de Venezuela. En ésta edición cuenta con la participación de la USB, la UCAB, la UCV y la UNEFA y se llevará a cabo en el Conjunto de Auditorios de la Universidad Simón Bolívar del 2 al 5 de junio del año 2015. </string>
 
     <!--Navigation Drawer stuff-->
@@ -33,7 +35,7 @@
     </string-array>
 
     <!--Map strings-->
-    <string name="joincic_location">Conjunto de Auditorios. Universidad Simón Bolívar. Caracas, Venezuela</string>
+    <string name="joincic_location">Aula Magna, Universidad Católica Andrés Bello. Caracas, Venezuela</string>
     <string name="loading">Cargando...</string>
     <string name="no_connection">No tienes conexion a internet en este momento, intenta de nuevo mas tarde.</string>
     <string name="presentation">Ponencia</string>
