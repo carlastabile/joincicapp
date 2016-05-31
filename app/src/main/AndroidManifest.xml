@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ve.com.joincic.joincicapp">
+    package="com.joincic.joincicapp">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- The following two permissions are not required to use
@@ -26,19 +26,19 @@
       to match your app's package name + ".permission.C2D_MESSAGE".
     -->
     <permission android:protectionLevel="signature"
-        android:name="ve.com.joincic.joincicapp.permission.C2D_MESSAGE" />
-    <uses-permission android:name="ve.com.joincic.joincicapp.permission.C2D_MESSAGE" />
+        android:name="com.joincic.joincicapp.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.joincic.joincicapp.permission.C2D_MESSAGE" />
 
     <application
-        android:name="ve.com.joincic.joincicapp.application.JoincicApp"
+        android:name="com.joincic.joincicapp.application.JoincicApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
         <provider
-            android:name="ve.com.joincic.joincicapp.providers.JoincicProvider"
-            android:authorities="ve.com.joincic.joincicapp.providers"
+            android:name="com.joincic.joincicapp.providers.JoincicProvider"
+            android:authorities="com.joincic.joincicapp.providers"
             android:exported="false" >
         </provider>
         <activity
@@ -111,7 +111,7 @@
                 <!--
                   IMPORTANT: Change "com.parse.starter" to match your app's package name.
                 -->
-                <category android:name="ve.com.joincic.joincicapp" />
+                <category android:name="com.joincic.joincicapp" />
             </intent-filter>
         </receiver>
     </application>

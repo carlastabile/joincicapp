@@ -4,51 +4,39 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ve.com.joincic.joincicapp.R;
-import ve.com.joincic.joincicapp.controllers.Assistant;
-import ve.com.joincic.joincicapp.controllers.AssistantController;
-import ve.com.joincic.joincicapp.views.EnrollWorkTableActivity;
+import com.joincic.joincicapp.R;
 
 /**
  * Created by carla on 25/05/15.
  */
 public class EnrollWorTableRequester extends AsyncTask<String, Integer, Integer> {
     private static String TAG = "EnrollWorTableRequester";
-    private static String ENROLL_PATH = "http://sistema.joincic.com.ve/participantes_mesa/create.json";
+    private static String ENROLL_PATH = "http://sistema.joincic.com.ve/participantes_mesas.json";
     Context context;
-    int ci, wtId;
+    int id, wtId;
     ProgressDialog prgDialog;
 
-    public EnrollWorTableRequester(Context context, int ci, int wtId) {
+    public EnrollWorTableRequester(Context context, int id, int wtId) {
         this.context = context;
-        this.ci = ci;
+        this.id = id;
         this.wtId = wtId;
-        Log.d(TAG, "cedula " + ci + " id = " +wtId );
+        Log.d(TAG, "cedula " + id + " id = " +wtId );
         this.prgDialog = new ProgressDialog(this.context);
         this.prgDialog.setMessage(this.context.getResources().getString(R.string.enrolling));
         this.prgDialog.setCancelable(false);
@@ -79,13 +67,16 @@ public class EnrollWorTableRequester extends AsyncTask<String, Integer, Integer>
         if (prgDialog != null && prgDialog.isShowing()) {
             prgDialog.dismiss();
         }
-        Log.d(TAG, "ENROLL FUE " + result);
+        Log.d(TAG, "ENROLL FUE " + result+ " path " + ENROLL_PATH);
 
         if (result == 200) {
             Toast.makeText(this.context, context.getResources().getString(R.string.enroll_success),
                     Toast.LENGTH_LONG).show();
         } else if (result == 404) {
             Toast.makeText(this.context, context.getResources().getString(R.string.mt_not_found),
+                    Toast.LENGTH_LONG).show();
+        } else if (result == 409) {
+            Toast.makeText(this.context, context.getResources().getString(R.string.already_registered),
                     Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this.context, context.getResources().getString(R.string.enroll_error),
@@ -96,13 +87,13 @@ public class EnrollWorTableRequester extends AsyncTask<String, Integer, Integer>
     }
 
     public int enroll() {
-        HttpPost get = new HttpPost(ENROLL_PATH + ci); //change
+        HttpPost get = new HttpPost(ENROLL_PATH); //change
         HttpClient client = new DefaultHttpClient();
         HttpResponse response;
 
         List<NameValuePair> postParams = new ArrayList<NameValuePair>();
-        postParams.add(new BasicNameValuePair("participantes_mesa[paticipante_id]", String.valueOf(ci)));
-        postParams.add(new BasicNameValuePair("participantes_mesa[mesa_de_trabajo_id]",
+        postParams.add(new BasicNameValuePair("participante_mesa[participante_id]", String.valueOf(id)));
+        postParams.add(new BasicNameValuePair("participante_mesa[mesa_de_trabajo_id]",
                 String.valueOf(wtId)));
         UrlEncodedFormEntity encodedParams;
 

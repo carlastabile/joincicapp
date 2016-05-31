@@ -11,11 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ve.com.joincic.joincicapp.R;
+import com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.controllers.ScheduleController;
 import ve.com.joincic.joincicapp.views.ScheduleItemDetailsActivity;

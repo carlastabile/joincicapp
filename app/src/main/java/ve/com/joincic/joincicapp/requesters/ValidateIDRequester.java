@@ -1,12 +1,10 @@
 package ve.com.joincic.joincicapp.requesters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -19,24 +17,17 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import ve.com.joincic.joincicapp.R;
-import ve.com.joincic.joincicapp.adapters.Item;
-import ve.com.joincic.joincicapp.adapters.ItemAdapter;
+import com.joincic.joincicapp.R;
+
 import ve.com.joincic.joincicapp.application.JoincicApp;
 import ve.com.joincic.joincicapp.controllers.Assistant;
 import ve.com.joincic.joincicapp.controllers.AssistantController;
-import ve.com.joincic.joincicapp.controllers.Schedule;
-import ve.com.joincic.joincicapp.controllers.ScheduleController;
 import ve.com.joincic.joincicapp.views.EnrollWorkTableActivity;
-import ve.com.joincic.joincicapp.views.ScheduleActivity;
 
 /**
  * Created by carla on 25/05/15.
@@ -139,6 +130,7 @@ public class ValidateIDRequester extends AsyncTask<String, Integer, Integer> {
                             Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putInt(JoincicApp.ASSISTANT_CI, a.getParticipante().getCedula());
+                    editor.putInt(JoincicApp.ASSISTANT_ID, a.getParticipante().getId());
                     editor.putString(JoincicApp.ASSISTANT_NAME, a.getParticipante().getNombre() + " " +
                             a.getParticipante().getApellido());
                     editor.apply();

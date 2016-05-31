@@ -1,19 +1,15 @@
 package ve.com.joincic.joincicapp.views;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
-import ve.com.joincic.joincicapp.R;
-import ve.com.joincic.joincicapp.adapters.ScheduleItem;
+import com.joincic.joincicapp.R;
+
 import ve.com.joincic.joincicapp.application.JoincicApp;
-import ve.com.joincic.joincicapp.controllers.ScheduleController;
 
 /**
  * Created by Carla Urrea Stabile on 21/05/15.

@@ -11,7 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import ve.com.joincic.joincicapp.R;
+import com.joincic.joincicapp.R;
 
 /**
  * This class consists of creating an adapter to show the menu. It extends

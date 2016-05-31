@@ -1,8 +1,6 @@
 package ve.com.joincic.joincicapp.adapters;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
-import ve.com.joincic.joincicapp.R;
+import com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.application.JoincicApp;
-import ve.com.joincic.joincicapp.controllers.Schedule;
 
 /**
  * Created by Carla Urrea Stabile on 20/05/15.

@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import ve.com.joincic.joincicapp.R;
+import com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.controllers.Schedule;
 import ve.com.joincic.joincicapp.controllers.ScheduleController;
 import ve.com.joincic.joincicapp.views.ScheduleActivity;

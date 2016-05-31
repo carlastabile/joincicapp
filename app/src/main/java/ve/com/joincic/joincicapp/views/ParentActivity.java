@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import ve.com.joincic.joincicapp.R;
+import com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.adapters.DrawerItem;
 import ve.com.joincic.joincicapp.adapters.DrawerItemAdapter;
 import ve.com.joincic.joincicapp.application.JoincicApp;

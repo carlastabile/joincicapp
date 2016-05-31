@@ -32,7 +32,8 @@ public class JoincicApp extends Application {
     public static final String DAY_4 = "2016-06-04";
     public static final String ASSISTANT_NAME = "assistant_name";
     public static final String ASSISTANT_CI = "assistant_ci";
-
+    public static final String ASSISTANT_ID = "assistant_id";
+    public static Context context;
 
 
     @Override
@@ -40,7 +41,6 @@ public class JoincicApp extends Application {
         super.onCreate();
         Parse.initialize(this, PARSE_APP_KEY, PARSE_CLIENT_KEY);
         ParseInstallation.getCurrentInstallation().saveInBackground();
-
         Log.d(TAG, "-------------------------------- ON CREATE! ");
 
         ParsePush.subscribeInBackground("", new SaveCallback() {
@@ -91,4 +91,7 @@ public class JoincicApp extends Application {
         }
         return null;
     }
+
+
+
 }

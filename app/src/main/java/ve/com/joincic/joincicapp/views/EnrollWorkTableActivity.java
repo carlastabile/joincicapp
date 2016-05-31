@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import ve.com.joincic.joincicapp.R;
+import com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.adapters.Item;
 import ve.com.joincic.joincicapp.adapters.ItemAdapter;
 import ve.com.joincic.joincicapp.adapters.ScheduleItem;
@@ -91,7 +91,7 @@ public class EnrollWorkTableActivity extends ParentActivity {
         } else {
             ItemAdapter adapter = new ItemAdapter(context, items);
             SharedPreferences prefs = context.getSharedPreferences(JoincicApp.ASSISTANT_PREFS, 0);
-            final int ci = prefs.getInt(JoincicApp.ASSISTANT_CI, 0);
+            final int ci = prefs.getInt(JoincicApp.ASSISTANT_ID, 0);
 
             if (wtList != null) {
                 wtList.setAdapter(adapter);

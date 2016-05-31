@@ -57,4 +57,5 @@
     <string name="enroll_confirm">¿Estás seguro que deseas inscribirte en ésta mesa de trabajo?</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
+    <string name="already_registered">Ya te has registrado en esta mesa de trabajo</string>
 </resources>

@@ -9,7 +9,7 @@ import android.view.Window;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import ve.com.joincic.joincicapp.R;
+import com.joincic.joincicapp.R;
 
 /**
  * A Splash Screen Activity to launch before every other activity

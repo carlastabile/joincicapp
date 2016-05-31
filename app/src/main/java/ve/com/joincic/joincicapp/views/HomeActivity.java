@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import ve.com.joincic.joincicapp.R;
+import com.joincic.joincicapp.R;
 
 
 public class HomeActivity extends ParentActivity {

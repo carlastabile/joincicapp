@@ -1,27 +1,12 @@
 package ve.com.joincic.joincicapp.views;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ve.com.joincic.joincicapp.R;
+import com.joincic.joincicapp.R;
 import ve.com.joincic.joincicapp.adapters.DemoCollectionPagerAdapter;
-import ve.com.joincic.joincicapp.adapters.Item;
-import ve.com.joincic.joincicapp.adapters.ItemAdapter;
-import ve.com.joincic.joincicapp.application.JoincicApp;
-import ve.com.joincic.joincicapp.controllers.ScheduleController;
-import ve.com.joincic.joincicapp.requesters.ScheduleRequester;
 
 /**
  * This class manages everything related to the schedule of the event
