@@ -6,7 +6,7 @@ android {
     useLibrary  'org.apache.http.legacy'
 
     defaultConfig {
-        applicationId "ve.com.joincic.joincicapp"
+        applicationId "com.joincic.joincicapp"
         minSdkVersion 16
         targetSdkVersion 23
       versionCode 2

@@ -12,7 +12,7 @@
     <string name="drawer_close">Close</string>
 
     <string-array name="menu_items">
-        <item name="about_us">Nosotros</item>
+        <item name="about_us">Inicio</item>
         <item name="calendar">Agenda</item>
         <item name="map">Mapa</item>
         <item name="pratical_work">Inscribirse en una Mesa de Trabajo</item>
