@@ -24,7 +24,7 @@ public class PresentationModel {
     public static final String C_TITLE = "title";
     public static final String C_DAY = "day";
     public static final String C_DESCRIPTION = "description";
-    public static final String C_REQUIREMENTS = "requirements";
+    public static final String C_PRESENTER_NAME = "presenter_name";
 
     private static final String DATABASE_CREATE = "CREATE TABLE "
             + TABLE_PRESENTATION
@@ -38,10 +38,7 @@ public class PresentationModel {
             + C_TITLE + " TEXT, "
             + C_DAY + " TEXT, "
             + C_DESCRIPTION + " TEXT, "
-            + C_REQUIREMENTS + " TEXT "
-
-            //Constraints
-//            + ", FOREIGN KEY (" + C_COURSE_ID + ") " + "REFERENCES COURSE (id) "
+            + C_PRESENTER_NAME + " TEXT "
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {
@@ -68,7 +65,7 @@ public class PresentationModel {
         values.put(C_TITLE, p.getTitulo());
         values.put(C_DAY, p.getDia());
         values.put(C_DESCRIPTION, p.getDescripcion());
-        values.put(C_REQUIREMENTS, p.getDescripcion());
+        values.put(C_PRESENTER_NAME, p.getPonente().getNombre() +" " + p.getPonente().getApellido());
         Log.d(TAG, "Values presentationToValues = " + values);
         return values;
     }

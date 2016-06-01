@@ -14,6 +14,15 @@ public class ScheduleItem implements Item {
     String startDate;
     String endDate;
     String day;
+    String presenterName;
+
+    public String getPresenterName() {
+        return presenterName;
+    }
+
+    public void setPresenterName(String presenterName) {
+        this.presenterName = presenterName;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -60,10 +69,11 @@ public class ScheduleItem implements Item {
         return day;
     }
 
-    public ScheduleItem(int id, boolean isPresentation, int sponsorId, int presenterId, String subject, String title,
+    public ScheduleItem(int id, boolean isPresentation, int sponsorId, int presenterId, String presenterName, String subject, String title,
                         String description, String startDate, String endDate, String day) {
         this.id = id;
         this.sponsorId = sponsorId;
+        this.presenterName = presenterName;
         this.presenterId = presenterId;
         this.subject = subject;
         this.title = title;

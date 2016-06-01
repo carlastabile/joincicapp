@@ -81,10 +81,11 @@ public class ScheduleController {
                 String endDate = cursor.getString(cursor.getColumnIndex(PresentationModel.C_END_HOUR));
                 String desc = cursor.getString(cursor.getColumnIndex(PresentationModel.C_DESCRIPTION));
                 String dayy = cursor.getString(cursor.getColumnIndex(PresentationModel.C_DAY));
+                String presenterName = cursor.getString(cursor.getColumnIndex(PresentationModel.C_PRESENTER_NAME));
 
                 boolean isPresentation = true;
 
-                ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, null, title, desc,
+                ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, presenterName, null, title, desc,
                         startDate, endDate, dayy);
                 items.add(s);
 
@@ -106,10 +107,11 @@ public class ScheduleController {
                 String endDate = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_END_HOUR));
                 String desc = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_DESCRIPTION));
                 String dayy = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_DAY));
+                String presenterName = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_PRESENTER_NAME));
 
                 boolean isPresentation = false;
 
-                ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, null, title, desc,
+                ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, presenterName, null, title, desc,
                         startDate, endDate, dayy);
                 items.add(s);
 
@@ -142,10 +144,10 @@ public class ScheduleController {
                 String endDate = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_END_HOUR));
                 String desc = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_DESCRIPTION));
                 String dayy = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_DAY));
-
+                String presenterName = cursorWT.getString(cursorWT.getColumnIndex(WorkTableModel.C_PRESENTER_NAME));
                 boolean isPresentation = false;
 
-                ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, null, title, desc,
+                ScheduleItem s = new ScheduleItem(id, isPresentation, 0, 0, presenterName,null, title, desc,
                         startDate, endDate, dayy);
                 items.add(s);
                 Log.d(TAG, "Agregue a " +title);

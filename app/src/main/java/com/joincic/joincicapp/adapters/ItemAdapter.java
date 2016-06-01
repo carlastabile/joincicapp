@@ -68,7 +68,7 @@ public class ItemAdapter extends BaseAdapter {
             TextView presenter = (TextView) row.findViewById(R.id.schedule_presenter_name);
 
             if (presenter != null)
-                presenter.setText("Carla Urrea");
+                presenter.setText(si.getPresenterName());
 
             TextView startDate = (TextView) row.findViewById(R.id.schedule_start_hour);
             if (startDate != null)

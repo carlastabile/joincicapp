@@ -17,7 +17,7 @@ public class Schedule {
         return ponencia;
     }
 
-    public class WorkTable{
+    public class WorkTable {
         int id;
         int patrocinante_id;
         String tema;
@@ -31,6 +31,16 @@ public class Schedule {
         String hora_fin;
         String dia;
         String requerimientos;
+        Ponente ponente;
+
+        public Ponente getPonente() {
+
+            return ponente;
+        }
+
+        public void setPonente(Ponente ponente) {
+            this.ponente = ponente;
+        }
 
         public int getId() {
             return id;
@@ -83,6 +93,27 @@ public class Schedule {
         public String getRequerimientos() {
             return requerimientos;
         }
+
+        public class Ponente {
+            String nombre;
+            String apellido;
+
+            public String getNombre() {
+                return nombre;
+            }
+
+            public void setNombre(String nombre) {
+                this.nombre = nombre;
+            }
+
+            public String getApellido() {
+                return apellido;
+            }
+
+            public void setApellido(String apellido) {
+                this.apellido = apellido;
+            }
+        }
     }
 
     public class Presentation {
@@ -96,9 +127,22 @@ public class Schedule {
         String hora_fin;
         String dia;
         String requerimientos;
+        Ponente ponente;
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public Ponente getPonente() {
+            return ponente;
+        }
+
+        public void setPonente(Ponente ponente) {
+            this.ponente = ponente;
+        }
 
         public Presentation(int id, int patrocinante_id, int ponente_id, String tema, String titulo,
-                        String descripcion, String hora_ini, String hora_fin, String dia, String requerimientos) {
+                            String descripcion, String hora_ini, String hora_fin, String dia, String requerimientos) {
             this.id = id;
             this.patrocinante_id = patrocinante_id;
             this.ponente_id = ponente_id;
@@ -149,6 +193,28 @@ public class Schedule {
 
         public String getRequerimientos() {
             return requerimientos;
+        }
+
+
+        public class Ponente {
+            String nombre;
+            String apellido;
+
+            public String getNombre() {
+                return nombre;
+            }
+
+            public void setNombre(String nombre) {
+                this.nombre = nombre;
+            }
+
+            public String getApellido() {
+                return apellido;
+            }
+
+            public void setApellido(String apellido) {
+                this.apellido = apellido;
+            }
         }
     }
 }

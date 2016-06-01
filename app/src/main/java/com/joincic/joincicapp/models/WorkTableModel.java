@@ -27,7 +27,7 @@ public class WorkTableModel {
     public static final String C_CAPACITY = "capacity";
     public static final String C_DAY = "day";
     public static final String C_DESCRIPTION = "description";
-    public static final String C_REQUIREMENTS = "requirements";
+    public static final String C_PRESENTER_NAME = "requirements";
 
     private static final String DATABASE_CREATE = "CREATE TABLE "
             + TABLE_WORK_TABLE
@@ -44,10 +44,8 @@ public class WorkTableModel {
             + C_TITLE + " TEXT, "
             + C_DAY + " TEXT, "
             + C_DESCRIPTION + " TEXT, "
-            + C_REQUIREMENTS + " TEXT "
+            + C_PRESENTER_NAME + " TEXT "
 
-            //Constraints
-//            + ", FOREIGN KEY (" + C_COURSE_ID + ") " + "REFERENCES COURSE (id) "
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {
@@ -74,7 +72,7 @@ public class WorkTableModel {
         values.put(C_TITLE, p.getTitulo());
         values.put(C_DAY, p.getDia());
         values.put(C_DESCRIPTION, p.getDescripcion());
-        values.put(C_REQUIREMENTS, p.getDescripcion());
+        values.put(C_PRESENTER_NAME, p.getPonente().getNombre() + " " + p.getPonente().getApellido());
 
         values.put(C_CAPACITY, p.getCapacidad());
         values.put(C_LOCATION, p.getLugar());

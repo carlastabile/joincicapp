@@ -27,11 +27,14 @@ public class JoincicProvider extends ContentProvider{
 
     // Paths related to the user profile
     private static final String PATH_PRESENTATIONS = "presentations";
+    private static final String PATH_PRESENTERS = "presenters";
     private static final String PATH_WORK_TABLES = "work_tables";
     private static final String PATH_ASSISTANTS = "assistants";
 
     // Content URIS
     public static final Uri CONTENT_URI_PRESENTATIONS = Uri
+            .parse("content://" + AUTHORITY + "/" + PATH_PRESENTATIONS);
+    public static final Uri CONTENT_URI_PRESENTERS = Uri
             .parse("content://" + AUTHORITY + "/" + PATH_PRESENTATIONS);
     public static final Uri CONTENT_URI_WORK_TABLES = Uri
             .parse("content://" + AUTHORITY + "/" + PATH_WORK_TABLES);
@@ -45,6 +48,8 @@ public class JoincicProvider extends ContentProvider{
     private static final int WORK_TABLE_ID = 4;
     private static final int ASSISTANTS = 5;
     private static final int ASSISTANT_ID = 6;
+    private static final int PRESENTER = 7;
+    private static final int PRESENTER_ID = 8;
 
     //UriMatcher
     private static final UriMatcher sURIMatcher = new UriMatcher(
@@ -59,6 +64,9 @@ public class JoincicProvider extends ContentProvider{
         sURIMatcher.addURI(AUTHORITY, PATH_ASSISTANTS, ASSISTANTS);
         sURIMatcher.addURI(AUTHORITY, PATH_ASSISTANTS + "/#",
                 ASSISTANT_ID);
+        sURIMatcher.addURI(AUTHORITY, PATH_PRESENTERS, PRESENTER);
+        sURIMatcher.addURI(AUTHORITY, PATH_PRESENTERS + "/#",
+                PRESENTER_ID);
     }
 
     @Override

@@ -11,7 +11,16 @@ public class JoincicDbHelper extends SQLiteOpenHelper {
     final static String TAG = "JoincicDbHelper";
 
     public final static String DB_NAME = "joincicapp.db";
-    final static int DB_VERSION = 1;
+    final static int DB_VERSION = 2;
+
+    /* VERSION 1
+    * Initial Db
+    * */
+
+    /* VERSION 2
+    * Changed the requirement attribute of Presentation and Work Table to
+    * C_PRESENTER_NAME
+    * */
 
     public JoincicDbHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);

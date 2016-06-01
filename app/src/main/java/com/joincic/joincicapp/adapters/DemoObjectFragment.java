@@ -87,7 +87,7 @@ public class DemoObjectFragment extends Fragment {
                     editor.putString("day", si.getDay());
                     editor.putString("startDate", si.getStartDate());
                     editor.putString("endDate", si.getEndDate());
-                    editor.putString("presenterName", "Carla Urrea");
+                    editor.putString("presenterName", si.getPresenterName());
                     editor.apply();
 
                     Intent i = new Intent(getActivity(), ScheduleItemDetailsActivity.class);
